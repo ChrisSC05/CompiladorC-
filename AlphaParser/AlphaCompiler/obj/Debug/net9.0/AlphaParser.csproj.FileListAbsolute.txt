@@ -1,0 +1,14 @@
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\bin\Debug\net9.0\AlphaParser.exe
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\bin\Debug\net9.0\AlphaParser.deps.json
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\bin\Debug\net9.0\AlphaParser.runtimeconfig.json
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\bin\Debug\net9.0\AlphaParser.dll
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\bin\Debug\net9.0\AlphaParser.pdb
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\AlphaParser.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\AlphaParser.AssemblyInfoInputs.cache
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\AlphaParser.AssemblyInfo.cs
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\AlphaParser.csproj.CoreCompileInputs.cache
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\AlphaParser.dll
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\refint\AlphaParser.dll
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\AlphaParser.pdb
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\AlphaParser.genruntimeconfig.cache
+C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\obj\Debug\net9.0\ref\AlphaParser.dll

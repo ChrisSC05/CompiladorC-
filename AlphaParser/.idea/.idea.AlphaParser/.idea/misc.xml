@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ANTLRGenerationPreferences">
+    <option name="perGrammarGenerationSettings">
+      <list>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/AlphaParser/Content/AlphaParser.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\Parser\Generated" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="" />
+          <option name="pkg" value="" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/AlphaParser/Content/AlphaScanner.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaParser\Parser\Generated" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="" />
+          <option name="pkg" value="" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/AlphaCompiler/AlphaScanner.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaCompiler\Content/parser/generated" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="" />
+          <option name="pkg" value="" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+        <PerGrammarGenerationSettings>
+          <option name="fileName" value="$PROJECT_DIR$/AlphaCompiler/AlphaParser.g4" />
+          <option name="autoGen" value="true" />
+          <option name="outputDir" value="C:\Users\artox\OneDrive\Desktop\Compi\AlphaParser\AlphaCompiler\Content/parser/generated" />
+          <option name="libDir" value="" />
+          <option name="encoding" value="" />
+          <option name="pkg" value="" />
+          <option name="language" value="CSharp" />
+          <option name="generateVisitor" value="true" />
+        </PerGrammarGenerationSettings>
+      </list>
+    </option>
+  </component>
+</project>
