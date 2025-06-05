@@ -1,0 +1,10 @@
+class Main {
+    int x;
+    int y;
+    void main() {
+        x = 3 - 2 ;
+        y = x + 1 ;
+        print(x);
+        print(y);
+    }
+}

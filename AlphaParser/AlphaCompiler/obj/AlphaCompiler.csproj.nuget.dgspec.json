@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj": {}
+    "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj": {
+    "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
+        "projectUniqueName": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
         "projectName": "AlphaCompiler",
-        "projectPath": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
+        "projectPath": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
         "packagesPath": "C:\\Users\\artox\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\AlphaParser\\AlphaCompiler\\obj\\",
+        "outputPath": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\artox\\AppData\\Roaming\\NuGet\\NuGet.Config"

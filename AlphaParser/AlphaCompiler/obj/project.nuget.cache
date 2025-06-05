@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Y+n2EFBgSVU=",
+  "dgSpecHash": "gXcbRx9HeWY=",
   "success": true,
-  "projectFilePath": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
+  "projectFilePath": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\artox\\.nuget\\packages\\antlr4.runtime.standard\\4.13.1\\antlr4.runtime.standard.4.13.1.nupkg.sha512"
   ],

@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Update="test.alpha">
+        <None Update="test.txt">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
       <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />

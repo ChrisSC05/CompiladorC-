@@ -2,18 +2,26 @@ parser grammar AlphaParser;
 
 options { tokenVocab = AlphaScanner; }
 
-// --------------- REGLA INICIAL ---------------
+// ===================================================================
+// 1) INICIO: permitimos múltiples clases y luego EOF
+// ===================================================================
 program
-    : CLASS IDENT LBRACE (varDecl | classDecl | methodDecl)* RBRACE
+    : classDecl* EOF
     ;
 
-// --------------- DECLARACIONES ---------------
+// ===================================================================
+// 2) DECLARACIONES DE CLASES, VARIABLES Y MÉTODOS
+// ===================================================================
+classDecl
+    : CLASS IDENT LBRACE classBody RBRACE
+    ;
+
+classBody
+    : (varDecl | methodDecl)*
+    ;
+
 varDecl
     : type IDENT (COMMA IDENT)* SEMI
-    ;
-
-classDecl
-    : CLASS IDENT LBRACE (varDecl | methodDecl)* RBRACE
     ;
 
 methodDecl
@@ -24,39 +32,50 @@ formPars
     : type IDENT (COMMA type IDENT)*
     ;
 
-// --------------- TIPOS ------------------------
+// ===================================================================
+// 3) TIPOS: ahora aceptamos explícitamente INT, CHAR, BOOL, FLOAT, STRING, o cualquier IDENT (clase)
+// ===================================================================
 type
-    : IDENT (LBRACK RBRACK)?
+    : (INT | CHAR | BOOL | FLOAT | STRING | IDENT) (LBRACK RBRACK)?
     ;
 
-// --------------- SENTENCIAS -------------------
+// ===================================================================
+// 4) SENTENCIAS
+// ===================================================================
 statement
-    :designator ( ASSIGN expr
+    : designator (ASSIGN expr
                  | LPAREN actPars? RPAREN
                  | INC
-                 | DEC ) SEMI
+                 | DEC
+                 ) SEMI
     | IF LPAREN condition RPAREN statement (ELSE statement)?
     | FOR LPAREN expr? SEMI condition? SEMI expr? RPAREN statement
     | WHILE LPAREN condition RPAREN statement
     | BREAK SEMI
     | RETURN expr? SEMI
     | READ LPAREN designator RPAREN SEMI
-    | printStmt 
+    | printStmt
     | block
     | SEMI
     ;
 
-// --------------- BLOQUE -----------------------
+// ===================================================================
+// 5) BLOQUES
+// ===================================================================
 block
     : LBRACE (varDecl | statement)* RBRACE
     ;
 
-// --------------- LLAMADAS / PARES -------------
+// ===================================================================
+// 6) LLAMADA A MÉTODOS (ACTUALES)
+// ===================================================================
 actPars
     : expr (COMMA expr)*
     ;
 
-// --------------- CONDICIONES ------------------
+// ===================================================================
+// 7) CONDICIONES (AND / OR / RELACIONALES)
+// ===================================================================
 condition
     : condTerm (OR condTerm)*
     ;
@@ -69,11 +88,14 @@ condFact
     : expr relop expr
     ;
 
-// --------------- EXPRESIONES -----------------
+// ===================================================================
+// 8) EXPRESIONES ARITMÉTICAS Y UNARIAS
+// ===================================================================
 expr
-    : MINUS? cast? term (addop term)*
+    : MINUS? cast? term (addop term)* 
     ;
 
+// Cast explícito: “(type) expr”
 cast
     : LPAREN type RPAREN
     ;
@@ -83,33 +105,50 @@ term
     ;
 
 factor
-    : designator (LPAREN actPars? RPAREN)?
+    : designator (LPAREN actPars? RPAREN)?   // variable o llamada a método
     | NUMBER
     | CHAR_CONST
     | STRING_CONST
     | TRUE
     | FALSE
-    | NEW IDENT
+    | NULL                    // <--- ahora reconoce NULL
+    | NEW IDENT LBRACK expr RBRACK   // creación de arreglos: new Tipo[expr]
     | LPAREN expr RPAREN
     ;
 
+// ===================================================================
+// 9) DESIGNADOR (variables, campos, arreglos)
+// ===================================================================
 designator
     : IDENT (DOT IDENT | LBRACK expr RBRACK)*
     ;
 
-// --------------- OPERADORES ------------------
+// ===================================================================
+// 10) OPERADORES
+// ===================================================================
 relop
-    : EQ | NEQ | GT | GTEQ | LT | LTEQ
+    : EQ 
+    | NEQ 
+    | GT 
+    | GTEQ 
+    | LT 
+    | LTEQ
     ;
 
 addop
-    : PLUS | MINUS
+    : PLUS 
+    | MINUS
     ;
 
 mulop
-    : STAR | DIV | MOD
+    : STAR 
+    | DIV 
+    | MOD
     ;
-// --------------- PALABRAS RESERVADAS ----------
+
+// ===================================================================
+// 11) PRINT
+// ===================================================================
 printStmt
     : PRINT LPAREN expr (COMMA NUMBER)? RPAREN SEMI
     ;
