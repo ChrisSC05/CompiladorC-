@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from C:/Users/artox/OneDrive/Desktop/Compi/AlphaParser/AlphaCompiler/AlphaParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/artox/OneDrive/Desktop/Compi/CompiladorC-/AlphaParser/AlphaCompiler/AlphaParser.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -38,17 +38,29 @@ public interface IAlphaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitProgram([NotNull] AlphaParser.ProgramContext context);
 	/// <summary>
+	/// Visit a parse tree produced by <see cref="AlphaParser.classDecl"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitClassDecl([NotNull] AlphaParser.ClassDeclContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="AlphaParser.classBody"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitClassBody([NotNull] AlphaParser.ClassBodyContext context);
+	/// <summary>
 	/// Visit a parse tree produced by <see cref="AlphaParser.varDecl"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitVarDecl([NotNull] AlphaParser.VarDeclContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AlphaParser.classDecl"/>.
+	/// Visit a parse tree produced by <see cref="AlphaParser.constDecl"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitClassDecl([NotNull] AlphaParser.ClassDeclContext context);
+	Result VisitConstDecl([NotNull] AlphaParser.ConstDeclContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AlphaParser.methodDecl"/>.
 	/// </summary>
@@ -68,11 +80,96 @@ public interface IAlphaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitType([NotNull] AlphaParser.TypeContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AlphaParser.statement"/>.
+	/// Visit a parse tree produced by the <c>assignStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitStatement([NotNull] AlphaParser.StatementContext context);
+	Result VisitAssignStatement([NotNull] AlphaParser.AssignStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>callStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCallStatement([NotNull] AlphaParser.CallStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>incStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIncStatement([NotNull] AlphaParser.IncStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>decStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDecStatement([NotNull] AlphaParser.DecStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ifStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIfStatement([NotNull] AlphaParser.IfStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>forStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitForStatement([NotNull] AlphaParser.ForStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>whileStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitWhileStatement([NotNull] AlphaParser.WhileStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>breakStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBreakStatement([NotNull] AlphaParser.BreakStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>returnStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReturnStatement([NotNull] AlphaParser.ReturnStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>readStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitReadStatement([NotNull] AlphaParser.ReadStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>printStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitPrintStatement([NotNull] AlphaParser.PrintStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>blockStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBlockStatement([NotNull] AlphaParser.BlockStatementContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>emptyStatement</c>
+	/// labeled alternative in <see cref="AlphaParser.statement"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEmptyStatement([NotNull] AlphaParser.EmptyStatementContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AlphaParser.block"/>.
 	/// </summary>
@@ -104,29 +201,102 @@ public interface IAlphaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitCondFact([NotNull] AlphaParser.CondFactContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="AlphaParser.expr"/>.
+	/// Visit a parse tree produced by the <c>unaryExpr</c>
+	/// labeled alternative in <see cref="AlphaParser.expr"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitExpr([NotNull] AlphaParser.ExprContext context);
+	Result VisitUnaryExpr([NotNull] AlphaParser.UnaryExprContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>binaryExpr</c>
+	/// labeled alternative in <see cref="AlphaParser.expr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBinaryExpr([NotNull] AlphaParser.BinaryExprContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>termExpr</c>
+	/// labeled alternative in <see cref="AlphaParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTermExpr([NotNull] AlphaParser.TermExprContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>callFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCallFactor([NotNull] AlphaParser.CallFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>designatorFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDesignatorFactor([NotNull] AlphaParser.DesignatorFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>intFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIntFactor([NotNull] AlphaParser.IntFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>floatFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitFloatFactor([NotNull] AlphaParser.FloatFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>boolFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitBoolFactor([NotNull] AlphaParser.BoolFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>charFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitCharFactor([NotNull] AlphaParser.CharFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>stringFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitStringFactor([NotNull] AlphaParser.StringFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>nullFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNullFactor([NotNull] AlphaParser.NullFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>newArrayFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNewArrayFactor([NotNull] AlphaParser.NewArrayFactorContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>groupFactor</c>
+	/// labeled alternative in <see cref="AlphaParser.factor"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitGroupFactor([NotNull] AlphaParser.GroupFactorContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AlphaParser.cast"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
 	Result VisitCast([NotNull] AlphaParser.CastContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AlphaParser.term"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitTerm([NotNull] AlphaParser.TermContext context);
-	/// <summary>
-	/// Visit a parse tree produced by <see cref="AlphaParser.factor"/>.
-	/// </summary>
-	/// <param name="context">The parse tree.</param>
-	/// <return>The visitor result.</return>
-	Result VisitFactor([NotNull] AlphaParser.FactorContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="AlphaParser.designator"/>.
 	/// </summary>

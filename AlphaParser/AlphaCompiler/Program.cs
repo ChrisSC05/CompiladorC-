@@ -51,8 +51,8 @@ namespace AlphaCompiler
             if (builder.Errors.Count == 0)
             {
                 //Console.WriteLine("✔️ No se encontraron errores semánticos.");
-                builder.DumpSymbols(); // Muestra tabla de símbolos si lo deseas
-                builder.DumpMemory();
+                //builder.DumpSymbols(); // Muestra tabla de símbolos si lo deseas
+                //builder.DumpMemory();
             }
             else
             {

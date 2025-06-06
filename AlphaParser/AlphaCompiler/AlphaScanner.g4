@@ -1,125 +1,90 @@
 lexer grammar AlphaScanner;
 
-// ===================================================================
-// 1) PALABRAS RESERVADAS Y TIPOS BÁSICOS (deben ir antes de IDENT)
-// ===================================================================
-CLASS    : 'class';
-IF       : 'if';
-ELSE     : 'else';
-FOR      : 'for';
-WHILE    : 'while';
-BREAK    : 'break';
-RETURN   : 'return';
-READ     : 'read';
-VOID     : 'void';
-NEW      : 'new';
-TRUE     : 'true';
-FALSE    : 'false';
-PRINT    : 'print';
+// ======================================================
+// PALABRAS CLAVE Y TIPOS PRIMITIVOS
+// ======================================================
+CLASS   : 'class';
+IF      : 'if';
+ELSE    : 'else';
+FOR     : 'for';
+WHILE   : 'while';
+BREAK   : 'break';
+RETURN  : 'return';
+READ    : 'read';
+VOID    : 'void';
+NEW     : 'new';
+PRINT   : 'print';
+TRUE    : 'true';
+FALSE   : 'false';
+NULL    : 'null';
+CONST : 'const';
+VAR     : 'var';
 
-// ------------------------------------------------
-// Tipos primitivos exigidos por MiniC#
-// ------------------------------------------------
-INT      : 'int';
-FLOAT    : 'float';
-BOOL     : 'bool';
-CHAR     : 'char';
-STRING   : 'string';
+INT     : 'int';
+FLOAT_T : 'float';
+BOOL    : 'bool';
+CHAR_T  : 'char';
+STRING_T: 'string';
 
-// ------------------------------------------------
-// Constante nula
-// ------------------------------------------------
-NULL     : 'null';
+// ======================================================
+// OPERADORES Y SÍMBOLOS
+// ======================================================
+INC     : '++';
+DEC     : '--';
+OR      : '||';
+AND     : '&&';
 
-// ===================================================================
-// 2) OPERADORES, DELIMITADORES Y SÍMBOLOS
-// ===================================================================
-INC      : '++';
-DEC      : '--';
-OR       : '||';
-AND      : '&&';
+EQ      : '==';
+NEQ     : '!=';
+GTEQ    : '>=';
+LTEQ    : '<=';
+GT      : '>';
+LT      : '<';
 
-EQ       : '==';
-NEQ      : '!=';
-GTEQ     : '>='; 
-LTEQ     : '<='; 
-GT       : '>';  
-LT       : '<';  
+ASSIGN  : '=';
+PLUS    : '+';
+MINUS   : '-';
+STAR    : '*';
+DIV     : '/';
+MOD     : '%';
 
-ASSIGN   : '=';
-PLUS     : '+';
-MINUS    : '-';
-STAR     : '*';
-DIV      : '/';
-MOD      : '%';
+LBRACE  : '{';
+RBRACE  : '}';
+LPAREN  : '(';
+RPAREN  : ')';
+LBRACK  : '[';
+RBRACK  : ']';
+SEMI    : ';';
+COMMA   : ',';
+DOT     : '.';
 
-LBRACE   : '{';
-RBRACE   : '}';
-LPAREN   : '(';
-RPAREN   : ')';
-LBRACK   : '[';
-RBRACK   : ']';
-SEMI     : ';';
-COMMA    : ','; 
-DOT      : '.';
+// ======================================================
+// LITERALES (MEJOR TIPADOS)
+// ======================================================
+INTLITERAL    : DIGIT+;
+FLOATLITERAL  : DIGIT+ '.' DIGIT+;
+CHARLITERAL   : '\'' (ESC_SEQ | ~['\\\r\n]) '\'';
+STRINGLITERAL : '"' (ESC_SEQ | ~["\\\r\n])* '"';
+BOOLEANLITERAL: TRUE | FALSE;
 
-// ===================================================================
-// 3) IDENTIFICADORES Y LITERALES
-// ===================================================================
+// ======================================================
+// IDENTIFICADORES
+// ======================================================
 IDENT
     : '_'? LETTER (LETTER | DIGIT)*
     ;
 
-// Número entero (sin signo, para simplificar)
-NUMBER
-    : DIGIT+
-    ;
+// ======================================================
+// COMENTARIOS Y ESPACIOS
+// ======================================================
+LINE_COMMENT   : '//' ~[\r\n]* -> channel(HIDDEN);
+BLOCK_COMMENT  : '/*' .*? '*/' -> channel(HIDDEN);
+WS             : [ \t\r\n\u000B\u000C\u00A0\u2000-\u200B\u3000]+ -> channel(HIDDEN);
 
-// Char constant: admite secuencias escapadas como '\n', '\t', '\'' ­­
-CHAR_CONST
-    : '\'' (ESC_SEQ | ~['\\\r\n]) '\''
-    ;
-
-// String constant: admite escapado dentro de comillas dobles
-STRING_CONST
-    : '"' (ESC_SEQ | ~["\\\r\n])* '"'
-    ;
-
-// ===================================================================
-// 4) COMENTARIOS ANIDADOS Y DE LÍNEA
-// ===================================================================
-// 4.1) Comentario de línea (// …)
-LINE_COMMENT
-    : '//' ~[\r\n]* -> channel(HIDDEN)
-    ;
-
-// 4.2) Comentarios de bloque ANIDADOS usando modo dedicado
-BLOCK_COMMENT_OPEN
-    : '/*' -> pushMode(COMMENT_MODE), skip
-    ;
-
-mode COMMENT_MODE;
-    // Si aparece otro '/*', anidamos: volvemos a entrar en COMMENT_MODE
-    COMMENT_NESTED_OPEN  : '/*'           -> pushMode(COMMENT_MODE), skip ;
-    // Cuando aparece '*/', salimos de un nivel de anidamiento
-    COMMENT_CLOSE        : '*/'           -> popMode, skip ;
-    // Cualquier carácter dentro del comentario se descarta
-    COMMENT_CONTENT      : .              -> skip ;
-    
-
-// ===================================================================
-// 5) ESPACIOS EN BLANCO (se descartan)
-// ===================================================================
-WS 
-    : [ \t\r\n]+ -> channel(HIDDEN)
-    ;
-
-// ===================================================================
-// 6) FRAGMENTOS AUXILIARES
-// ===================================================================
+// ======================================================
+// FRAGMENTOS
+// ======================================================
 fragment LETTER : [a-zA-Z_];
 fragment DIGIT  : [0-9];
-fragment ESC_SEQ 
-    : '\\' ( ['"\\tnr] | 'u' HEX HEX HEX HEX )
-    ;
+fragment ESC_SEQ: '\\' ( ['"\\tnr] | 'u' HEX HEX HEX HEX );
 fragment HEX    : [0-9a-fA-F];
