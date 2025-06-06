@@ -19,6 +19,7 @@ namespace AlphaCompiler.Semantics
         private readonly Dictionary<string, char> _memoryChar = new();
         private readonly Dictionary<string, string> _memoryString = new();
         private readonly Dictionary<string, List<object>> _memoryArrays = new();
+        private readonly Dictionary<string, ITypeInfo> _arrayElementTypes = new();
 
         private bool _inClass = false;
         private bool _inMethod = false;
@@ -106,8 +107,11 @@ namespace AlphaCompiler.Semantics
                 var name = id.GetText();
                 var sym = new VarSymbol(name, type, _inClass && !_inMethod, ln, col);
                 _symtab.Add(sym, Error);
-                if (type is ArrayTypeInfo)
+                if (type is ArrayTypeInfo arrType)
+                {
                     _memoryArrays[name] = new List<object>();
+                    _arrayElementTypes[name] = arrType.ElementType;
+                }
                 else
                 {
                     switch (type.Name)
@@ -200,6 +204,13 @@ namespace AlphaCompiler.Semantics
                         return null;
                     }
 
+                    var elemType = _arrayElementTypes[varName];
+                    if (!IsCompatible(elemType, value))
+                    {
+                        Error($"Tipo incompatible al asignar a '{varName}[{index}]'");
+                        return null;
+                    }
+
                     list[index] = value!;
                 }
                 else
@@ -211,12 +222,14 @@ namespace AlphaCompiler.Semantics
             }
 
             // ✅ CASO: Asignación completa a un arreglo → a = new int[5];
-            if (targetType is ArrayTypeInfo)
+            if (targetType is ArrayTypeInfo arrInfo)
             {
                 var sizeObj = Visit(ctx.expr());
                 if (sizeObj is int size && size >= 0)
                 {
-                    _memoryArrays[varName] = Enumerable.Repeat<object>(0, size).ToList();
+                    _arrayElementTypes[varName] = arrInfo.ElementType;
+                    var def = DefaultValue(arrInfo.ElementType);
+                    _memoryArrays[varName] = Enumerable.Repeat(def, size).ToList();
                     return null;
                 }
 
@@ -306,7 +319,8 @@ namespace AlphaCompiler.Semantics
             //Console.WriteLine($"11 VisitBinaryExpr → expresión: {ctx.GetText()}");
 
             var left = Visit(ctx.term(0));
-            //Console.WriteLine($" 22 left value: {left} (type: {left?.GetType().Name ?? "null"})");
+            if (ctx.addop().Length == 0)
+                return left;
 
             if (left is not int)
             {
@@ -363,7 +377,11 @@ namespace AlphaCompiler.Semantics
             => ctx.BOOLEANLITERAL().GetText() == "true";
 
         public override object? VisitCharFactor(AlphaParser.CharFactorContext ctx)
-            => ctx.CHARLITERAL().GetText().Trim('\'');
+        {
+            var text = ctx.CHARLITERAL().GetText();
+            var unquoted = text.Substring(1, text.Length - 2);
+            return unquoted.Length > 0 ? unquoted[0] : '\0';
+        }
 
         public override object? VisitStringFactor(AlphaParser.StringFactorContext ctx)
             => ctx.STRINGLITERAL().GetText().Trim('"');
@@ -377,6 +395,11 @@ namespace AlphaCompiler.Semantics
             //  Acceso a elemento del arreglo: a[2]
             if (designator.expr().Length > 0)
             {
+                if (sym?.Type is not ArrayTypeInfo)
+                {
+                    Error($"'{name}' no es un arreglo");
+                    return 0;
+                }
                 var indexVal = Visit(designator.expr(0));
                 if (indexVal is not int index || index < 0)
                 {
@@ -474,6 +497,30 @@ namespace AlphaCompiler.Semantics
         {
             foreach (var scope in symtab.AllScopes)
                 yield return scope.GetSymbols();
+        }
+
+        private static object DefaultValue(ITypeInfo type)
+            => type.Name switch
+            {
+                "int" => 0,
+                "float" => 0f,
+                "bool" => false,
+                "char" => '\0',
+                "string" => string.Empty,
+                _ => new object()
+            };
+
+        private static bool IsCompatible(ITypeInfo type, object? value)
+        {
+            return type.Name switch
+            {
+                "int" => value is int,
+                "float" => value is float,
+                "bool" => value is bool,
+                "char" => value is char,
+                "string" => value is string,
+                _ => true
+            };
         }
     }
 }
