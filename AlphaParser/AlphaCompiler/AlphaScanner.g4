@@ -77,8 +77,13 @@ IDENT
 // ======================================================
 // COMENTARIOS Y ESPACIOS
 // ======================================================
-LINE_COMMENT   : '//' ~[\r\n]* -> channel(HIDDEN);
-BLOCK_COMMENT  : '/*' .*? '*/' -> channel(HIDDEN);
+LINE_COMMENT
+    : '//' ~[\r\n]* -> channel(HIDDEN)
+    ;
+
+BLOCK_COMMENT
+    : '/*' .*? '*/' -> channel(HIDDEN)
+    ;
 WS             : [ \t\r\n\u000B\u000C\u00A0\u2000-\u200B\u3000]+ -> channel(HIDDEN);
 
 // ======================================================
