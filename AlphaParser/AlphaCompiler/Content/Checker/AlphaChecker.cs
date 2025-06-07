@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Globalization;
 using Antlr4.Runtime;
 using AlphaCompiler.Semantics;
 
@@ -253,13 +254,9 @@ namespace AlphaCompiler.Semantics
 
             return null;
         }
-        
-        
-        public override object? VisitCallFactor(AlphaParser.CallFactorContext ctx)
-        {
-            var funcName = ctx.designator().IDENT(0).GetText();
-            var args = ctx.actPars()?.expr().Select(Visit).ToList() ?? new List<object?>();
 
+        private object? ExecuteCall(string funcName, IList<object?> args)
+        {
             switch (funcName)
             {
                 case "chr":
@@ -322,6 +319,22 @@ namespace AlphaCompiler.Semantics
             }
 
             return null;
+        }
+
+        public override object? VisitCallStatement(AlphaParser.CallStatementContext ctx)
+        {
+            var funcName = ctx.designator().IDENT(0).GetText();
+            var args = ctx.actPars()?.expr().Select(Visit).ToList() ?? new List<object?>();
+            ExecuteCall(funcName, args);
+            return null;
+        }
+        
+        
+        public override object? VisitCallFactor(AlphaParser.CallFactorContext ctx)
+        {
+            var funcName = ctx.designator().IDENT(0).GetText();
+            var args = ctx.actPars()?.expr().Select(Visit).ToList() ?? new List<object?>();
+            return ExecuteCall(funcName, args);
         }
 
 
@@ -387,7 +400,7 @@ namespace AlphaCompiler.Semantics
         }
 
         public override object? VisitDoubleFactor(AlphaParser.DoubleFactorContext ctx)
-            => int.Parse(ctx.DOUBLELITERAL().GetText());
+            => double.Parse(ctx.DOUBLELITERAL().GetText(), CultureInfo.InvariantCulture);
         public override object? VisitIntFactor(AlphaParser.IntFactorContext ctx)
             => int.Parse(ctx.INTLITERAL().GetText());
 
