@@ -15,10 +15,12 @@ namespace AlphaCompiler.Semantics
 
         private readonly Dictionary<string, int> _memory = new();
         private readonly Dictionary<string, float> _memoryFloat = new();
+        private readonly Dictionary<string, double> _memoryDouble = new();
         private readonly Dictionary<string, bool> _memoryBool = new();
         private readonly Dictionary<string, char> _memoryChar = new();
         private readonly Dictionary<string, string> _memoryString = new();
         private readonly Dictionary<string, List<object>> _memoryArrays = new();
+        private readonly Dictionary<string, ITypeInfo> _arrayElementTypes = new();
 
         private bool _inClass = false;
         private bool _inMethod = false;
@@ -34,6 +36,7 @@ namespace AlphaCompiler.Semantics
             string name = ctx.IDENT()?.GetText()
                           ?? ctx.INT()?.GetText()
                           ?? ctx.FLOAT_T()?.GetText()
+                          ?? ctx.DOUBLE_T()?.GetText()
                           ?? ctx.BOOL()?.GetText()
                           ?? ctx.CHAR_T()?.GetText()
                           ?? ctx.STRING_T()?.GetText()
@@ -46,7 +49,7 @@ namespace AlphaCompiler.Semantics
         {
             return name switch
             {
-                "int" or "float" or "bool" or "char" or "string" => new PrimitiveTypeInfo(name),
+                "int" or "float" or "double" or "bool" or "char" or "string" => new PrimitiveTypeInfo(name),
                 _ => _symtab.Resolve(name) is ClassSymbol ? new ClassTypeInfo(name) : new PrimitiveTypeInfo(name)
             };
         }
@@ -106,14 +109,18 @@ namespace AlphaCompiler.Semantics
                 var name = id.GetText();
                 var sym = new VarSymbol(name, type, _inClass && !_inMethod, ln, col);
                 _symtab.Add(sym, Error);
-                if (type is ArrayTypeInfo)
+                if (type is ArrayTypeInfo arrType)
+                {
                     _memoryArrays[name] = new List<object>();
+                    _arrayElementTypes[name] = arrType.ElementType;
+                }
                 else
                 {
                     switch (type.Name)
                     {
                         case "int": _memory[name] = 0; break;
                         case "float": _memoryFloat[name] = 0f; break;
+                        case "double": _memoryDouble[name] = 0d; break;
                         case "bool": _memoryBool[name] = false; break;
                         case "char": _memoryChar[name] = '\0'; break;
                         case "string": _memoryString[name] = ""; break;
@@ -200,6 +207,13 @@ namespace AlphaCompiler.Semantics
                         return null;
                     }
 
+                    var elemType = _arrayElementTypes[varName];
+                    if (!IsCompatible(elemType, value))
+                    {
+                        Error($"Tipo incompatible al asignar a '{varName}[{index}]'");
+                        return null;
+                    }
+
                     list[index] = value!;
                 }
                 else
@@ -211,12 +225,14 @@ namespace AlphaCompiler.Semantics
             }
 
             // ✅ CASO: Asignación completa a un arreglo → a = new int[5];
-            if (targetType is ArrayTypeInfo)
+            if (targetType is ArrayTypeInfo arrInfo)
             {
                 var sizeObj = Visit(ctx.expr());
                 if (sizeObj is int size && size >= 0)
                 {
-                    _memoryArrays[varName] = Enumerable.Repeat<object>(0, size).ToList();
+                    _arrayElementTypes[varName] = arrInfo.ElementType;
+                    var def = DefaultValue(arrInfo.ElementType);
+                    _memoryArrays[varName] = Enumerable.Repeat(def, size).ToList();
                     return null;
                 }
 
@@ -229,7 +245,13 @@ namespace AlphaCompiler.Semantics
             switch (targetType.Name)
             {
                 case "int" when valueToAssign is int i: _memory[varName] = i; break;
-                case "float" when valueToAssign is float f: _memoryFloat[varName] = f; break;
+                case "float" when valueToAssign is float f:
+                    _memoryFloat[varName] = f;
+                    break;
+                case "float" when valueToAssign is double df:
+                    _memoryFloat[varName] = (float)df;
+                    break;
+                case "double" when valueToAssign is double d: _memoryDouble[varName] = d; break;
                 case "bool" when valueToAssign is bool b: _memoryBool[varName] = b; break;
                 case "char" when valueToAssign is char c: _memoryChar[varName] = c; break;
                 case "string" when valueToAssign is string s: _memoryString[varName] = s; break;
@@ -306,7 +328,8 @@ namespace AlphaCompiler.Semantics
             //Console.WriteLine($"11 VisitBinaryExpr → expresión: {ctx.GetText()}");
 
             var left = Visit(ctx.term(0));
-            //Console.WriteLine($" 22 left value: {left} (type: {left?.GetType().Name ?? "null"})");
+            if (ctx.addop().Length == 0)
+                return left;
 
             if (left is not int)
             {
@@ -357,13 +380,17 @@ namespace AlphaCompiler.Semantics
             => int.Parse(ctx.INTLITERAL().GetText());
 
         public override object? VisitFloatFactor(AlphaParser.FloatFactorContext ctx)
-            => float.Parse(ctx.FLOATLITERAL().GetText());
+            => double.Parse(ctx.FLOATLITERAL().GetText());
 
         public override object? VisitBoolFactor(AlphaParser.BoolFactorContext ctx)
             => ctx.BOOLEANLITERAL().GetText() == "true";
 
         public override object? VisitCharFactor(AlphaParser.CharFactorContext ctx)
-            => ctx.CHARLITERAL().GetText().Trim('\'');
+        {
+            var text = ctx.CHARLITERAL().GetText();
+            var unquoted = text.Substring(1, text.Length - 2);
+            return unquoted.Length > 0 ? unquoted[0] : '\0';
+        }
 
         public override object? VisitStringFactor(AlphaParser.StringFactorContext ctx)
             => ctx.STRINGLITERAL().GetText().Trim('"');
@@ -377,6 +404,11 @@ namespace AlphaCompiler.Semantics
             //  Acceso a elemento del arreglo: a[2]
             if (designator.expr().Length > 0)
             {
+                if (sym?.Type is not ArrayTypeInfo)
+                {
+                    Error($"'{name}' no es un arreglo");
+                    return 0;
+                }
                 var indexVal = Visit(designator.expr(0));
                 if (indexVal is not int index || index < 0)
                 {
@@ -409,6 +441,7 @@ namespace AlphaCompiler.Semantics
                 {
                     "int" => _memory.TryGetValue(name, out var i) ? i : 0,
                     "float" => _memoryFloat.TryGetValue(name, out var f) ? f : 0f,
+                    "double" => _memoryDouble.TryGetValue(name, out var d) ? d : 0d,
                     "bool" => _memoryBool.TryGetValue(name, out var b) ? b : false,
                     "char" => _memoryChar.TryGetValue(name, out var ch) ? ch : '\0',
                     "string" => _memoryString.TryGetValue(name, out var s) ? s : "",
@@ -422,7 +455,7 @@ namespace AlphaCompiler.Semantics
         public override object? VisitPrintStmt(AlphaParser.PrintStmtContext ctx)
         {
             var exprText = ctx.expr().GetText();
-            Console.WriteLine(exprText);
+            //Console.WriteLine(exprText);
             if (_memoryArrays.TryGetValue(exprText, out var arr))
             {
                 Console.WriteLine("[" + string.Join(", ", arr) + "]");
@@ -435,6 +468,7 @@ namespace AlphaCompiler.Semantics
             {
                 case int i: Console.WriteLine(i); break;
                 case float f: Console.WriteLine(f); break;
+                case double d: Console.WriteLine(d); break;
                 case bool b: Console.WriteLine(b); break;
                 case char c: Console.WriteLine(c); break;
                 case string s: Console.WriteLine(s); break;
@@ -474,6 +508,32 @@ namespace AlphaCompiler.Semantics
         {
             foreach (var scope in symtab.AllScopes)
                 yield return scope.GetSymbols();
+        }
+
+        private static object DefaultValue(ITypeInfo type)
+            => type.Name switch
+            {
+                "int" => 0,
+                "float" => 0f,
+                "double" => 0d,
+                "bool" => false,
+                "char" => '\0',
+                "string" => string.Empty,
+                _ => new object()
+            };
+
+        private static bool IsCompatible(ITypeInfo type, object? value)
+        {
+            return type.Name switch
+            {
+                "int" => value is int,
+                "float" => value is float,
+                "double" => value is double,
+                "bool" => value is bool,
+                "char" => value is char,
+                "string" => value is string,
+                _ => true
+            };
         }
     }
 }

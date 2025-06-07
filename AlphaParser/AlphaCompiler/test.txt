@@ -1,17 +1,33 @@
 class Main {
     int x;
     int y;
-    int[] a;
+    bool[] a;
+    int[] b;
+    string[] c;
+    char[] d;
     
     void main() {
         x = 200 - 2 ; 
         y = x + 2000 ;
-        a = new int[3];
-        a[2] = 100;
+        a = new bool[3];
+        b = new int[3];
+        c = new string[3];
+        d = new char[3];
+        a[2] = true;
+        b[2] = 777;
+        c[2] = "Sexo";
+        d[2] = 'a';
         print(x);
         print(y);
         print(a);
         print(a[2]);
+        print(b);
+        print(b[2]);
+        print(c);
+        print(c[2]);
+        print(d);
+        print(d[2]);
+        
         
     }
 }

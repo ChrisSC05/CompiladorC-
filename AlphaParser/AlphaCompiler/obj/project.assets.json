@@ -40,19 +40,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\artox\\.nuget\\packages\\": {}
+    "C:\\Users\\chris\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
+      "projectUniqueName": "C:\\Users\\chris\\OneDrive\\Documentos\\Proyectos Git\\Proyecto 2 Bases 2\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
       "projectName": "AlphaCompiler",
-      "projectPath": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
-      "packagesPath": "C:\\Users\\artox\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\artox\\OneDrive\\Desktop\\Compi\\CompiladorC-\\AlphaParser\\AlphaCompiler\\obj\\",
+      "projectPath": "C:\\Users\\chris\\OneDrive\\Documentos\\Proyectos Git\\Proyecto 2 Bases 2\\CompiladorC-\\AlphaParser\\AlphaCompiler\\AlphaCompiler.csproj",
+      "packagesPath": "C:\\Users\\chris\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\chris\\OneDrive\\Documentos\\Proyectos Git\\Proyecto 2 Bases 2\\CompiladorC-\\AlphaParser\\AlphaCompiler\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\artox\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\chris\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -76,7 +76,7 @@
         "auditLevel": "low",
         "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.200"
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net9.0": {
@@ -103,7 +103,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\artox\\.dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Users\\chris\\.dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
