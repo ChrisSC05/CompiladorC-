@@ -67,15 +67,15 @@ namespace AlphaCompiler.Semantics
             _symtab.Add(new MethodSymbol("ord", new PrimitiveTypeInfo("int"),
                 new List<ParamSymbol> { new("c", new PrimitiveTypeInfo("char"), 0, 0) }, 0, 0), Error);
 
-            // len(a): int[] → int
+            // len(a): arreglo de cualquier tipo → int
             _symtab.Add(new MethodSymbol("len", new PrimitiveTypeInfo("int"),
                 new List<ParamSymbol> { new("a", new ArrayTypeInfo(new PrimitiveTypeInfo("int")), 0, 0) }, 0, 0), Error);
 
-            // add(e): int → void  (supón lista de enteros por ahora)
+            // add(e): agrega elemento a un arreglo
             _symtab.Add(new MethodSymbol("add", new PrimitiveTypeInfo("void"),
                 new List<ParamSymbol> { new("e", new PrimitiveTypeInfo("int"), 0, 0) }, 0, 0), Error);
 
-            // del(i): int → void
+            // del(i): elimina elemento de un arreglo
             _symtab.Add(new MethodSymbol("del", new PrimitiveTypeInfo("void"),
                 new List<ParamSymbol> { new("i", new PrimitiveTypeInfo("int"), 0, 0) }, 0, 0), Error);
             foreach (var child in ctx.children)
@@ -282,30 +282,50 @@ namespace AlphaCompiler.Semantics
                     break;
 
                 case "len":
-                    if (args.Count == 1 && args[0] is string arrName && _memoryArrays.TryGetValue(arrName, out var lenList))
+                    if (args.Count == 1 &&
+                        args[0] is string arrName &&
+                        _memoryArrays.TryGetValue(arrName, out var lenList))
                         return lenList.Count;
+
                     Error("len espera el nombre de un arreglo válido");
                     break;
 
                 case "add":
-                    if (args.Count == 2 && args[0] is string name && _memoryArrays.TryGetValue(name, out var addList))
+                    if (args.Count == 2 &&
+                        args[0] is string name &&
+                        _memoryArrays.TryGetValue(name, out var addList))
                     {
-                        addList.Add(args[1] ?? 0);
+                        var elemType = _arrayElementTypes[name];
+                        if (IsCompatible(elemType, args[1]))
+                        {
+                            addList.Add(args[1]!);
+                            return null;
+                        }
+
+                        Error($"Tipo incompatible para add en arreglo '{name}'");
                         return null;
                     }
+
                     Error("add espera (nombre, valor)");
                     break;
 
                 case "del":
-                    if (args.Count == 2 && args[0] is string delName &&
+                    if (args.Count == 2 &&
+                        args[0] is string delName &&
                         _memoryArrays.TryGetValue(delName, out var delList))
                     {
-                        if (args[1] is int index && index >= 0 && index < delList.Count)
+                        if (args[1] is int index &&
+                            index >= 0 &&
+                            index < delList.Count)
+                        {
                             delList.RemoveAt(index);
-                        else
-                            Error($"Índice inválido para del: {args[1]}");
+                            return null;
+                        }
+
+                        Error($"Índice inválido para del: {args[1]}");
                         return null;
                     }
+
                     Error("del espera (nombre, índice)");
                     break;
             }
