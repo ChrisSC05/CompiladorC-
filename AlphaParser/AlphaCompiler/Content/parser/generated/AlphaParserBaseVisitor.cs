@@ -374,7 +374,7 @@ public partial class AlphaParserBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// <return>The visitor result.</return>
 	public virtual Result VisitIntFactor([NotNull] AlphaParser.IntFactorContext context) { return VisitChildren(context); }
 	/// <summary>
-	/// Visit a parse tree produced by the <c>floatFactor</c>
+	/// Visit a parse tree produced by the <c>doubleFactor</c>
 	/// labeled alternative in <see cref="AlphaParser.factor"/>.
 	/// <para>
 	/// The default implementation returns the result of calling <see cref="AbstractParseTreeVisitor{Result}.VisitChildren(IRuleNode)"/>
@@ -383,7 +383,7 @@ public partial class AlphaParserBaseVisitor<Result> : AbstractParseTreeVisitor<R
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	public virtual Result VisitFloatFactor([NotNull] AlphaParser.FloatFactorContext context) { return VisitChildren(context); }
+	public virtual Result VisitDoubleFactor([NotNull] AlphaParser.DoubleFactorContext context) { return VisitChildren(context); }
 	/// <summary>
 	/// Visit a parse tree produced by the <c>boolFactor</c>
 	/// labeled alternative in <see cref="AlphaParser.factor"/>.

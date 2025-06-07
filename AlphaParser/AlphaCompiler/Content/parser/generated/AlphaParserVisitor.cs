@@ -243,12 +243,12 @@ public interface IAlphaParserVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitIntFactor([NotNull] AlphaParser.IntFactorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>floatFactor</c>
+	/// Visit a parse tree produced by the <c>doubleFactor</c>
 	/// labeled alternative in <see cref="AlphaParser.factor"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitFloatFactor([NotNull] AlphaParser.FloatFactorContext context);
+	Result VisitDoubleFactor([NotNull] AlphaParser.DoubleFactorContext context);
 	/// <summary>
 	/// Visit a parse tree produced by the <c>boolFactor</c>
 	/// labeled alternative in <see cref="AlphaParser.factor"/>.

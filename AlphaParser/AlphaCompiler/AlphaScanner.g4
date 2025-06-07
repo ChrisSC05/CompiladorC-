@@ -21,7 +21,6 @@ CONST : 'const';
 VAR     : 'var';
 
 INT     : 'int';
-FLOAT_T : 'float';
 DOUBLE_T: 'double';
 BOOL    : 'bool';
 CHAR_T  : 'char';
@@ -63,7 +62,7 @@ DOT     : '.';
 // LITERALES (MEJOR TIPADOS)
 // ======================================================
 INTLITERAL    : DIGIT+;
-FLOATLITERAL  : DIGIT+ '.' DIGIT+;
+DOUBLELITERAL : DIGIT+ '.' DIGIT+;
 CHARLITERAL   : '\'' (ESC_SEQ | ~['\\\r\n]) '\'';
 STRINGLITERAL : '"' (ESC_SEQ | ~["\\\r\n])* '"';
 BOOLEANLITERAL: TRUE | FALSE;

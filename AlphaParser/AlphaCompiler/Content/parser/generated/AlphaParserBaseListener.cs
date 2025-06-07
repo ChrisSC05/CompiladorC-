@@ -458,19 +458,19 @@ public partial class AlphaParserBaseListener : IAlphaParserListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitIntFactor([NotNull] AlphaParser.IntFactorContext context) { }
 	/// <summary>
-	/// Enter a parse tree produced by the <c>floatFactor</c>
+	/// Enter a parse tree produced by the <c>doubleFactor</c>
 	/// labeled alternative in <see cref="AlphaParser.factor"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void EnterFloatFactor([NotNull] AlphaParser.FloatFactorContext context) { }
+	public virtual void EnterDoubleFactor([NotNull] AlphaParser.DoubleFactorContext context) { }
 	/// <summary>
-	/// Exit a parse tree produced by the <c>floatFactor</c>
+	/// Exit a parse tree produced by the <c>doubleFactor</c>
 	/// labeled alternative in <see cref="AlphaParser.factor"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	public virtual void ExitFloatFactor([NotNull] AlphaParser.FloatFactorContext context) { }
+	public virtual void ExitDoubleFactor([NotNull] AlphaParser.DoubleFactorContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>boolFactor</c>
 	/// labeled alternative in <see cref="AlphaParser.factor"/>.

@@ -1,33 +1,53 @@
+// Example usage of built-ins
 class Main {
-    int x;
-    int y;
-    bool[] a;
-    int[] b;
-    string[] c;
-    char[] d;
-    
+    int   num;
+    char  letter;
+    int[]    arrI;
+    string[] arrS;
+    double[] arrD;
+    char[]   arrC;
+    bool[]   arrB;
+
     void main() {
-        x = 200 - 2 ; 
-        y = x + 2000 ;
-        a = new bool[3];
-        b = new int[3];
-        c = new string[3];
-        d = new char[3];
-        a[2] = true;
-        b[2] = 777;
-        c[2] = "Sexo";
-        d[2] = 'a';
-        print(x);
-        print(y);
-        print(a);
-        print(a[2]);
-        print(b);
-        print(b[2]);
-        print(c);
-        print(c[2]);
-        print(d);
-        print(d[2]);
-        
-        
+        // ord → convierte char a int
+        num = ord('A');
+        print(num);               // 65
+
+        // chr → convierte int a char
+        letter = chr(66);
+        print(letter);            // B
+
+        // add → agrega elementos a distintos arreglos
+        arrI = new int[0];
+        arrS = new string[0];
+        arrD = new double[0];
+        arrC = new char[0];
+        arrB = new bool[0];
+        add(arrI, 10);
+        add(arrS, "hello");
+        add(arrD, 3.14);
+        add(arrC, 'x');
+        add(arrB, true);
+
+        // len → tamaño del arreglo después de add
+        print(len(arrI));         // 1
+        print(len(arrS));         // 1
+        print(len(arrD));         // 1
+        print(len(arrC));         // 1
+        print(len(arrB));         // 1
+
+        // del → elimina el primer elemento
+        del(arrI, 0);
+        del(arrS, 0);
+        del(arrD, 0);
+        del(arrC, 0);
+        del(arrB, 0);
+
+        // len de nuevo para verificar que se eliminaron
+        print(len(arrI));         // 0
+        print(len(arrS));         // 0
+        print(len(arrD));         // 0
+        print(len(arrC));         // 0
+        print(len(arrB));         // 0
     }
 }

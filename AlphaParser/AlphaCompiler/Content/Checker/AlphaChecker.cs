@@ -14,7 +14,6 @@ namespace AlphaCompiler.Semantics
         private readonly IList<string> _errors = new List<string>();
 
         private readonly Dictionary<string, int> _memory = new();
-        private readonly Dictionary<string, float> _memoryFloat = new();
         private readonly Dictionary<string, double> _memoryDouble = new();
         private readonly Dictionary<string, bool> _memoryBool = new();
         private readonly Dictionary<string, char> _memoryChar = new();
@@ -35,7 +34,6 @@ namespace AlphaCompiler.Semantics
         {
             string name = ctx.IDENT()?.GetText()
                           ?? ctx.INT()?.GetText()
-                          ?? ctx.FLOAT_T()?.GetText()
                           ?? ctx.DOUBLE_T()?.GetText()
                           ?? ctx.BOOL()?.GetText()
                           ?? ctx.CHAR_T()?.GetText()
@@ -49,7 +47,7 @@ namespace AlphaCompiler.Semantics
         {
             return name switch
             {
-                "int" or "float" or "double" or "bool" or "char" or "string" => new PrimitiveTypeInfo(name),
+                "int" or "double" or "bool" or "char" or "string" => new PrimitiveTypeInfo(name),
                 _ => _symtab.Resolve(name) is ClassSymbol ? new ClassTypeInfo(name) : new PrimitiveTypeInfo(name)
             };
         }
@@ -119,7 +117,6 @@ namespace AlphaCompiler.Semantics
                     switch (type.Name)
                     {
                         case "int": _memory[name] = 0; break;
-                        case "float": _memoryFloat[name] = 0f; break;
                         case "double": _memoryDouble[name] = 0d; break;
                         case "bool": _memoryBool[name] = false; break;
                         case "char": _memoryChar[name] = '\0'; break;
@@ -245,12 +242,6 @@ namespace AlphaCompiler.Semantics
             switch (targetType.Name)
             {
                 case "int" when valueToAssign is int i: _memory[varName] = i; break;
-                case "float" when valueToAssign is float f:
-                    _memoryFloat[varName] = f;
-                    break;
-                case "float" when valueToAssign is double df:
-                    _memoryFloat[varName] = (float)df;
-                    break;
                 case "double" when valueToAssign is double d: _memoryDouble[varName] = d; break;
                 case "bool" when valueToAssign is bool b: _memoryBool[varName] = b; break;
                 case "char" when valueToAssign is char c: _memoryChar[varName] = c; break;
@@ -395,12 +386,10 @@ namespace AlphaCompiler.Semantics
             return null;
         }
 
-        
+        public override object? VisitDoubleFactor(AlphaParser.DoubleFactorContext ctx)
+            => int.Parse(ctx.DOUBLELITERAL().GetText());
         public override object? VisitIntFactor(AlphaParser.IntFactorContext ctx)
             => int.Parse(ctx.INTLITERAL().GetText());
-
-        public override object? VisitFloatFactor(AlphaParser.FloatFactorContext ctx)
-            => double.Parse(ctx.FLOATLITERAL().GetText());
 
         public override object? VisitBoolFactor(AlphaParser.BoolFactorContext ctx)
             => ctx.BOOLEANLITERAL().GetText() == "true";
@@ -460,7 +449,6 @@ namespace AlphaCompiler.Semantics
                 PrimitiveTypeInfo t => t.Name switch
                 {
                     "int" => _memory.TryGetValue(name, out var i) ? i : 0,
-                    "float" => _memoryFloat.TryGetValue(name, out var f) ? f : 0f,
                     "double" => _memoryDouble.TryGetValue(name, out var d) ? d : 0d,
                     "bool" => _memoryBool.TryGetValue(name, out var b) ? b : false,
                     "char" => _memoryChar.TryGetValue(name, out var ch) ? ch : '\0',
@@ -487,7 +475,6 @@ namespace AlphaCompiler.Semantics
             switch (value)
             {
                 case int i: Console.WriteLine(i); break;
-                case float f: Console.WriteLine(f); break;
                 case double d: Console.WriteLine(d); break;
                 case bool b: Console.WriteLine(b); break;
                 case char c: Console.WriteLine(c); break;
@@ -534,7 +521,6 @@ namespace AlphaCompiler.Semantics
             => type.Name switch
             {
                 "int" => 0,
-                "float" => 0f,
                 "double" => 0d,
                 "bool" => false,
                 "char" => '\0',
@@ -547,7 +533,6 @@ namespace AlphaCompiler.Semantics
             return type.Name switch
             {
                 "int" => value is int,
-                "float" => value is float,
                 "double" => value is double,
                 "bool" => value is bool,
                 "char" => value is char,

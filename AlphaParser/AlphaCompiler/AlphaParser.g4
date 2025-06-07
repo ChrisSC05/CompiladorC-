@@ -42,7 +42,7 @@ formPars
 // 3) TIPOS
 // ===================================================================
 type
-    : (INT | CHAR_T | BOOL | FLOAT_T | DOUBLE_T | STRING_T | IDENT) (LBRACK RBRACK)?
+    : (INT | CHAR_T | BOOL | DOUBLE_T | STRING_T | IDENT) (LBRACK RBRACK)?
     ;
 
 // ===================================================================
@@ -108,7 +108,7 @@ factor
     : designator LPAREN actPars? RPAREN   #callFactor
     | designator                          #designatorFactor
     | INTLITERAL                          #intFactor
-    | FLOATLITERAL                        #floatFactor
+    | DOUBLELITERAL                       #doubleFactor
     | BOOLEANLITERAL                      #boolFactor
     | CHARLITERAL                         #charFactor
     | STRINGLITERAL                       #stringFactor
