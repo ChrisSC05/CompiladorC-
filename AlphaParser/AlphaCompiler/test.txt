@@ -7,6 +7,7 @@ class Main {
     double[] arrD;
     char[]   arrC;
     bool[]   arrB;
+    int i;
 
     void main() {
         // ord → convierte char a int
@@ -35,6 +36,18 @@ class Main {
         print(len(arrD));         // 1
         print(len(arrC));         // 1
         print(len(arrB));         // 1
+
+        if (true) print(1); else print(0);
+
+        i = 0;
+        while (i < 3) {
+            print(i);
+            i = i + 1;
+        }
+
+        for (i = 0; i < 3; i = i + 1) {
+            print(i);
+        }
         
         //print del contenido de los arreglos
         print(arrI[0]);           // 10

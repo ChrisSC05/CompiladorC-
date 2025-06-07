@@ -24,6 +24,9 @@ namespace AlphaCompiler.Semantics
 
         private bool _inClass = false;
         private bool _inMethod = false;
+        private bool _breakFlag = false;
+        private bool _returnFlag = false;
+        private object? _returnValue = null;
 
         public IReadOnlyList<string> Errors => (IReadOnlyList<string>)_errors;
         public SymbolTable Symbols => _symtab;
@@ -328,6 +331,92 @@ namespace AlphaCompiler.Semantics
             ExecuteCall(funcName, args);
             return null;
         }
+
+        public override object? VisitBreakStatement(AlphaParser.BreakStatementContext ctx)
+        {
+            _breakFlag = true;
+            return null;
+        }
+
+        public override object? VisitReturnStatement(AlphaParser.ReturnStatementContext ctx)
+        {
+            _returnValue = ctx.expr() != null ? Visit(ctx.expr()) : null;
+            _returnFlag = true;
+            return null;
+        }
+
+        public override object? VisitIfStatement(AlphaParser.IfStatementContext ctx)
+        {
+            var condVal = Visit(ctx.condition());
+            if (condVal is bool b)
+            {
+                if (b)
+                    Visit(ctx.statement(0));
+                else if (ctx.statement().Length > 1)
+                    Visit(ctx.statement(1));
+            }
+            else
+            {
+                Error("Condición no booleana en if");
+            }
+            return null;
+        }
+
+        public override object? VisitWhileStatement(AlphaParser.WhileStatementContext ctx)
+        {
+            while (true)
+            {
+                var condVal = Visit(ctx.condition());
+                if (condVal is not bool b)
+                {
+                    Error("Condición no booleana en while");
+                    break;
+                }
+                if (!b) break;
+
+                Visit(ctx.statement());
+                if (_returnFlag) break;
+                if (_breakFlag)
+                {
+                    _breakFlag = false;
+                    break;
+                }
+            }
+            return null;
+        }
+
+        public override object? VisitForStatement(AlphaParser.ForStatementContext ctx)
+        {
+            var exprs = ctx.expr();
+            if (exprs.Length > 0)
+                Visit(exprs[0]);
+
+            while (true)
+            {
+                if (ctx.condition() != null)
+                {
+                    var cVal = Visit(ctx.condition());
+                    if (cVal is not bool cond)
+                    {
+                        Error("Condición no booleana en for");
+                        break;
+                    }
+                    if (!cond) break;
+                }
+
+                Visit(ctx.statement());
+                if (_returnFlag) break;
+                if (_breakFlag)
+                {
+                    _breakFlag = false;
+                    break;
+                }
+
+                if (exprs.Length > 1)
+                    Visit(exprs[1]);
+            }
+            return null;
+        }
         
         
         public override object? VisitCallFactor(AlphaParser.CallFactorContext ctx)
@@ -386,6 +475,30 @@ namespace AlphaCompiler.Semantics
 
             //Console.WriteLine($"   => Resultado final: {result}");
             return result;
+        }
+
+        public override object? VisitCondition(AlphaParser.ConditionContext ctx)
+        {
+            bool result = ToBool(Visit(ctx.condTerm(0)));
+            for (int i = 1; i < ctx.condTerm().Length; i++)
+                result |= ToBool(Visit(ctx.condTerm(i)));
+            return result;
+        }
+
+        public override object? VisitCondTerm(AlphaParser.CondTermContext ctx)
+        {
+            bool result = ToBool(Visit(ctx.condFact(0)));
+            for (int i = 1; i < ctx.condFact().Length; i++)
+                result &= ToBool(Visit(ctx.condFact(i)));
+            return result;
+        }
+
+        public override object? VisitCondFact(AlphaParser.CondFactContext ctx)
+        {
+            var left = Visit(ctx.expr(0));
+            var right = Visit(ctx.expr(1));
+            var op = ctx.relop().GetText();
+            return EvaluateRelational(op, left, right);
         }
 
         public override object? VisitNewArrayFactor(AlphaParser.NewArrayFactorContext ctx)
@@ -522,6 +635,67 @@ namespace AlphaCompiler.Semantics
         {
             Console.WriteLine("---- Memoria ----");
             foreach (var kv in _memory) Console.WriteLine($"{kv.Key} = {kv.Value}");
+        }
+
+        private static bool ToBool(object? value)
+        {
+            if (value is bool b) return b;
+            return false;
+        }
+
+        private static bool EvaluateRelational(string op, object? left, object? right)
+        {
+            switch (left, right)
+            {
+                case (int li, int ri):
+                    return op switch
+                    {
+                        "==" => li == ri,
+                        "!=" => li != ri,
+                        ">" => li > ri,
+                        ">=" => li >= ri,
+                        "<" => li < ri,
+                        "<=" => li <= ri,
+                        _ => false
+                    };
+                case (double ld, double rd):
+                    return op switch
+                    {
+                        "==" => ld == rd,
+                        "!=" => ld != rd,
+                        ">" => ld > rd,
+                        ">=" => ld >= rd,
+                        "<" => ld < rd,
+                        "<=" => ld <= rd,
+                        _ => false
+                    };
+                case (char lc, char rc):
+                    return op switch
+                    {
+                        "==" => lc == rc,
+                        "!=" => lc != rc,
+                        ">" => lc > rc,
+                        ">=" => lc >= rc,
+                        "<" => lc < rc,
+                        "<=" => lc <= rc,
+                        _ => false
+                    };
+                case (string ls, string rs):
+                    return op switch
+                    {
+                        "==" => ls == rs,
+                        "!=" => ls != rs,
+                        _ => false
+                    };
+                case (bool lb, bool rb):
+                    return op switch
+                    {
+                        "==" => lb == rb,
+                        "!=" => lb != rb,
+                        _ => false
+                    };
+            }
+            return false;
         }
 
         private IEnumerable<IEnumerable<Symbol>> GetAllScopes(SymbolTable symtab)
