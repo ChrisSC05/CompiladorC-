@@ -35,6 +35,13 @@ class Main {
         print(len(arrD));         // 1
         print(len(arrC));         // 1
         print(len(arrB));         // 1
+        
+        //print del contenido de los arreglos
+        print(arrI[0]);           // 10
+        print(arrS[0]);           // hello
+        print(arrD[0]);           // 3.14
+        print(arrC[0]);           // x
+        print(arrB[0]);           // true
 
         // del → elimina el primer elemento
         del(arrI, 0);

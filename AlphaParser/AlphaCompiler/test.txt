@@ -7,6 +7,7 @@ class Main {
     double[] arrD;
     char[]   arrC;
     bool[]   arrB;
+    int i;
 
     void main() {
         // ord → convierte char a int
@@ -25,7 +26,7 @@ class Main {
         arrB = new bool[0];
         add(arrI, 10);
         add(arrS, "hello");
-        add(arrD, '3.14');
+        add(arrD, 3.14);
         add(arrC, 'x');
         add(arrB, true);
 
@@ -35,6 +36,25 @@ class Main {
         print(len(arrD));         // 1
         print(len(arrC));         // 1
         print(len(arrB));         // 1
+
+        if (true == true) print(1); else print(0);
+
+        i = 0;
+        while (i < 3) {
+            print(i);
+            i = i + 1;
+        }
+
+        for (i = 0; i < 3; i = i + 1) {
+            print(i);
+        }
+        
+        //print del contenido de los arreglos
+        print(arrI[0]);           // 10
+        print(arrS[0]);           // hello
+        print(arrD[0]);           // 3.14
+        print(arrC[0]);           // x
+        print(arrB[0]);           // true
 
         // del → elimina el primer elemento
         del(arrI, 0);
