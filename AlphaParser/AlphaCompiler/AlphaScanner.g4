@@ -14,14 +14,15 @@ READ    : 'read';
 VOID    : 'void';
 NEW     : 'new';
 PRINT   : 'print';
-TRUE    : 'true';
-FALSE   : 'false';
+fragment TRUE : 'true';
+fragment FALSE : 'false';
 NULL    : 'null';
 CONST : 'const';
 VAR     : 'var';
 
 INT     : 'int';
 FLOAT_T : 'float';
+DOUBLE_T: 'double';
 BOOL    : 'bool';
 CHAR_T  : 'char';
 STRING_T: 'string';
