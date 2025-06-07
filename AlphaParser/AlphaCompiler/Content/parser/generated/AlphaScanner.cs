@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from AlphaScanner.g4 by ANTLR 4.13.2
+// Generated from C:/Users/chris/OneDrive/Documentos/Proyectos Git/Proyecto 2 Bases 2/CompiladorC-/AlphaParser/AlphaCompiler/AlphaScanner.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162

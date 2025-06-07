@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from AlphaParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/chris/OneDrive/Documentos/Proyectos Git/Proyecto 2 Bases 2/CompiladorC-/AlphaParser/AlphaCompiler/AlphaParser.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -130,6 +130,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitProgram(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitProgram(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -191,6 +197,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitClassDecl(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitClassDecl(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -257,6 +269,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitClassBody(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitClassBody(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -341,6 +359,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitVarDecl(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitVarDecl(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -412,6 +436,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitConstDecl(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitConstDecl(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -474,6 +504,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitMethodDecl(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitMethodDecl(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -570,6 +606,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitFormPars(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitFormPars(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -639,6 +681,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitType(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitType(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -713,6 +761,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitIncStatement(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIncStatement(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class EmptyStatementContext : StatementContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEMI() { return GetToken(AlphaParser.SEMI, 0); }
@@ -726,6 +780,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitEmptyStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitEmptyStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DecStatementContext : StatementContext {
@@ -745,6 +805,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitDecStatement(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDecStatement(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class BlockStatementContext : StatementContext {
 		[System.Diagnostics.DebuggerNonUserCode] public BlockContext block() {
@@ -760,6 +826,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitBlockStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitBlockStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ForStatementContext : StatementContext {
@@ -793,6 +865,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitForStatement(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitForStatement(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class BreakStatementContext : StatementContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BREAK() { return GetToken(AlphaParser.BREAK, 0); }
@@ -807,6 +885,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitBreakStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitBreakStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class ReadStatementContext : StatementContext {
@@ -827,6 +911,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitReadStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitReadStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CallStatementContext : StatementContext {
@@ -849,6 +939,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitCallStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCallStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class IfStatementContext : StatementContext {
@@ -876,6 +972,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitIfStatement(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIfStatement(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class ReturnStatementContext : StatementContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RETURN() { return GetToken(AlphaParser.RETURN, 0); }
@@ -893,6 +995,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitReturnStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitReturnStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class WhileStatementContext : StatementContext {
@@ -916,6 +1024,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitWhileStatement(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitWhileStatement(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class PrintStatementContext : StatementContext {
 		[System.Diagnostics.DebuggerNonUserCode] public PrintStmtContext printStmt() {
@@ -931,6 +1045,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitPrintStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrintStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class AssignStatementContext : StatementContext {
@@ -952,6 +1072,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitAssignStatement(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAssignStatement(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1237,6 +1363,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitBlock(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitBlock(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1322,6 +1454,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitActPars(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitActPars(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1388,6 +1526,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitCondition(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCondition(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1456,6 +1600,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitCondTerm(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCondTerm(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1522,6 +1672,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitCondFact(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCondFact(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1581,6 +1737,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitUnaryExpr(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitUnaryExpr(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class BinaryExprContext : ExprContext {
 		[System.Diagnostics.DebuggerNonUserCode] public TermContext[] term() {
@@ -1605,6 +1767,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitBinaryExpr(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitBinaryExpr(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -1720,6 +1888,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitTermExpr(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTermExpr(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -1794,6 +1968,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitCallFactor(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCallFactor(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class IntFactorContext : FactorContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode INTLITERAL() { return GetToken(AlphaParser.INTLITERAL, 0); }
@@ -1807,6 +1987,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitIntFactor(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIntFactor(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class CharFactorContext : FactorContext {
@@ -1822,6 +2008,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitCharFactor(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCharFactor(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class StringFactorContext : FactorContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STRINGLITERAL() { return GetToken(AlphaParser.STRINGLITERAL, 0); }
@@ -1835,6 +2027,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitStringFactor(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitStringFactor(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class DesignatorFactorContext : FactorContext {
@@ -1851,6 +2049,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitDesignatorFactor(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDesignatorFactor(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class NewArrayFactorContext : FactorContext {
@@ -1874,6 +2078,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitNewArrayFactor(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNewArrayFactor(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class NullFactorContext : FactorContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NULL() { return GetToken(AlphaParser.NULL, 0); }
@@ -1888,6 +2098,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitNullFactor(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitNullFactor(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class BoolFactorContext : FactorContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode BOOLEANLITERAL() { return GetToken(AlphaParser.BOOLEANLITERAL, 0); }
@@ -1901,6 +2117,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitBoolFactor(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitBoolFactor(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 	public partial class GroupFactorContext : FactorContext {
@@ -1920,6 +2142,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitGroupFactor(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitGroupFactor(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 	public partial class FloatFactorContext : FactorContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode FLOATLITERAL() { return GetToken(AlphaParser.FLOATLITERAL, 0); }
@@ -1933,6 +2161,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitFloatFactor(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitFloatFactor(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2085,6 +2319,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitCast(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitCast(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -2150,6 +2390,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitDesignator(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDesignator(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2232,6 +2478,12 @@ public partial class AlphaParser : Parser {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitRelop(this);
 		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitRelop(this);
+			else return visitor.VisitChildren(this);
+		}
 	}
 
 	[RuleVersion(0)]
@@ -2281,6 +2533,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitAddop(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAddop(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2332,6 +2590,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitMulop(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitMulop(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 
@@ -2389,6 +2653,12 @@ public partial class AlphaParser : Parser {
 		public override void ExitRule(IParseTreeListener listener) {
 			IAlphaParserListener typedListener = listener as IAlphaParserListener;
 			if (typedListener != null) typedListener.ExitPrintStmt(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IAlphaParserVisitor<TResult> typedVisitor = visitor as IAlphaParserVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitPrintStmt(this);
+			else return visitor.VisitChildren(this);
 		}
 	}
 

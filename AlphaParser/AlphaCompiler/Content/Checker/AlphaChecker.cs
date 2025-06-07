@@ -455,7 +455,7 @@ namespace AlphaCompiler.Semantics
         public override object? VisitPrintStmt(AlphaParser.PrintStmtContext ctx)
         {
             var exprText = ctx.expr().GetText();
-            Console.WriteLine(exprText);
+            //Console.WriteLine(exprText);
             if (_memoryArrays.TryGetValue(exprText, out var arr))
             {
                 Console.WriteLine("[" + string.Join(", ", arr) + "]");

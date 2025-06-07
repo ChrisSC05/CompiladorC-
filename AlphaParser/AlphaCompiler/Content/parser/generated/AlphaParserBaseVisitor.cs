@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from C:/Users/artox/OneDrive/Desktop/Compi/CompiladorC-/AlphaParser/AlphaCompiler/AlphaParser.g4 by ANTLR 4.13.2
+// Generated from C:/Users/chris/OneDrive/Documentos/Proyectos Git/Proyecto 2 Bases 2/CompiladorC-/AlphaParser/AlphaCompiler/AlphaParser.g4 by ANTLR 4.13.2
 
 // Unreachable code detected
 #pragma warning disable 0162
