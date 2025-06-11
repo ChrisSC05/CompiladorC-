@@ -1,4 +1,5 @@
-﻿using AlphaCompiler.Semantics;
+﻿using AlphaCompiler.Generation;
+using AlphaCompiler.Semantics;
 using Antlr4.Runtime;
 
 namespace AlphaCompiler
@@ -53,6 +54,10 @@ namespace AlphaCompiler
                 //Console.WriteLine("✔️ No se encontraron errores semánticos.");
                 //builder.DumpSymbols(); // Muestra tabla de símbolos si lo deseas
                 //builder.DumpMemory();
+                var generator = new CodeGenerator(builder.Symbols);
+                var outputCode = generator.Visit(tree);
+                Console.WriteLine("Código generado:");
+                Console.WriteLine(outputCode);
             }
             else
             {

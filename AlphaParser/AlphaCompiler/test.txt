@@ -37,8 +37,6 @@ class Main {
         print(len(arrC));         // 1
         print(len(arrB));         // 1
 
-        if (true == true) print(1); 
-        else print(0);
         
         //print del contenido de los arreglos
         print(arrI[0]);           // 10
