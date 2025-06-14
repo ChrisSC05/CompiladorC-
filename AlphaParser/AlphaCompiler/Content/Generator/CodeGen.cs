@@ -74,6 +74,21 @@ namespace AlphaCompiler.Generation
             return null;
         }
 
+        public override object? VisitIfStatement(AlphaParser.IfStatementContext context)
+        {
+            var condition = Visit(context.condition());
+            Instructions.Add($"if ({condition}) {{");
+            Visit(context.statement(0));
+            Instructions.Add("}");
+            if (context.statement().Length > 1)
+            {
+                Instructions.Add("else {");
+                Visit(context.statement(1));
+                Instructions.Add("}");
+            }
+            return null;
+        }
+
         public override object? VisitBinaryExpr(AlphaParser.BinaryExprContext context)
         {
             var left = Visit(context.term(0));
@@ -145,6 +160,36 @@ namespace AlphaCompiler.Generation
         {
             var inner = Visit(context.expr());
             return $"({inner})";
+        }
+
+        public override object? VisitCondFact(AlphaParser.CondFactContext context)
+        {
+            var left = Visit(context.expr(0));
+            var op = context.relop().GetText();
+            var right = Visit(context.expr(1));
+            return $"({left} {op} {right})";
+        }
+
+        public override object? VisitCondTerm(AlphaParser.CondTermContext context)
+        {
+            var left = Visit(context.condFact(0));
+            for (int i = 1; i < context.condFact().Length; i++)
+            {
+                var right = Visit(context.condFact(i));
+                left = $"({left} && {right})";
+            }
+            return left;
+        }
+
+        public override object? VisitCondition(AlphaParser.ConditionContext context)
+        {
+            var left = Visit(context.condTerm(0));
+            for (int i = 1; i < context.condTerm().Length; i++)
+            {
+                var right = Visit(context.condTerm(i));
+                left = $"({left} || {right})";
+            }
+            return left;
         }
     }
 }
