@@ -67,6 +67,21 @@ namespace AlphaCompiler.Generation
             return null;
         }
 
+        public override object? VisitIfStatement(AlphaParser.IfStatementContext context)
+        {
+            var cond = Visit(context.condition());
+            Instructions.Add($"if ({cond}) {{");
+            Visit(context.statement(0));
+            Instructions.Add("}");
+            if (context.statement().Length > 1)
+            {
+                Instructions.Add("else {");
+                Visit(context.statement(1));
+                Instructions.Add("}");
+            }
+            return null;
+        }
+
         public override object? VisitPrintStmt(AlphaParser.PrintStmtContext context)
         {
             var expr = Visit(context.expr());
@@ -145,6 +160,36 @@ namespace AlphaCompiler.Generation
         {
             var inner = Visit(context.expr());
             return $"({inner})";
+        }
+
+        public override object? VisitCondition(AlphaParser.ConditionContext context)
+        {
+            var result = Visit(context.condTerm(0))?.ToString() ?? string.Empty;
+            for (int i = 1; i < context.condTerm().Length; i++)
+            {
+                var term = Visit(context.condTerm(i));
+                result = $"({result} || {term})";
+            }
+            return result;
+        }
+
+        public override object? VisitCondTerm(AlphaParser.CondTermContext context)
+        {
+            var result = Visit(context.condFact(0))?.ToString() ?? string.Empty;
+            for (int i = 1; i < context.condFact().Length; i++)
+            {
+                var fact = Visit(context.condFact(i));
+                result = $"({result} && {fact})";
+            }
+            return result;
+        }
+
+        public override object? VisitCondFact(AlphaParser.CondFactContext context)
+        {
+            var left = Visit(context.expr(0));
+            var op = context.relop().GetText();
+            var right = Visit(context.expr(1));
+            return $"({left} {op} {right})";
         }
     }
 }
