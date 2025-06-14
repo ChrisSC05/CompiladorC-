@@ -53,7 +53,7 @@ statement
     | designator LPAREN actPars? RPAREN SEMI                   #callStatement
     | designator INC SEMI                                      #incStatement
     | designator DEC SEMI                                      #decStatement
-    | IF LPAREN condition RPAREN block (ELSE block)?           #ifStatement
+    | IF LPAREN condition RPAREN statement (ELSE statement)?   #ifStatement
     | FOR LPAREN expr? SEMI condition? SEMI expr? RPAREN statement #forStatement
     | WHILE LPAREN condition RPAREN statement                  #whileStatement
     | BREAK SEMI                                               #breakStatement

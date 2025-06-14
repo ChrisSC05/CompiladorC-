@@ -51,6 +51,7 @@ IDENT=50
 LINE_COMMENT=51
 BLOCK_COMMENT=52
 WS=53
+FLOAT_T=54
 'class'=1
 'if'=2
 'else'=3
