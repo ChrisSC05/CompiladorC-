@@ -18,6 +18,13 @@ class Main {
         letter = chr(66);
         print(letter);            // B
 
+        // ejemplo sencillo de if
+        if (num == 65) {
+            print(1);
+        } else {
+            print(0);
+        }
+
         // add → agrega elementos a distintos arreglos
         arrI = new int[0];
         arrS = new string[0];

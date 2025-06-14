@@ -33,9 +33,7 @@ namespace AlphaCompiler
             // 2. Parser
             var parser = new AlphaParser(tokens);
             parser.RemoveErrorListeners();
-            parser.AddErrorListener(new DiagnosticErrorListener());
             parser.AddErrorListener(new ConsoleErrorListener<IToken>());
-            //parser.Trace = true;
             var tree   = parser.program(); // este es el punto de entrada
 
             // 3. Verificamos si hubo errores léxicos o sintácticos
