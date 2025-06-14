@@ -58,5 +58,11 @@ class Main {
         print(len(arrD));         // 0
         print(len(arrC));         // 0
         print(len(arrB));         // 0
+
+        if (num == 65) {
+            print(1);           // se imprime
+        } else {
+            print(0);
+        }
     }
 }
