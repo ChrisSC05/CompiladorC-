@@ -1,4 +1,3 @@
-﻿using AlphaCompiler.Generation;
 using AlphaCompiler.Semantics;
 using Antlr4.Runtime;
 
@@ -33,7 +32,7 @@ namespace AlphaCompiler
             // 2. Parser
             var parser = new AlphaParser(tokens);
             parser.RemoveErrorListeners();
-            parser.AddErrorListener(new DiagnosticErrorListener());
+            // Solo mostramos errores léxicos o sintácticos estándar
             parser.AddErrorListener(new ConsoleErrorListener<IToken>());
             //parser.Trace = true;
             var tree   = parser.program(); // este es el punto de entrada
@@ -54,10 +53,7 @@ namespace AlphaCompiler
                 //Console.WriteLine("✔️ No se encontraron errores semánticos.");
                 //builder.DumpSymbols(); // Muestra tabla de símbolos si lo deseas
                 //builder.DumpMemory();
-                var generator = new CodeGenerator(builder.Symbols);
-                var outputCode = generator.Visit(tree);
-                Console.WriteLine("Código generado:");
-                Console.WriteLine(outputCode);
+                Console.WriteLine("✔️ No se encontraron errores semánticos.");
             }
             else
             {
