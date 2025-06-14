@@ -954,12 +954,12 @@ public partial class AlphaParser : Parser {
 			return GetRuleContext<ConditionContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode RPAREN() { return GetToken(AlphaParser.RPAREN, 0); }
-		[System.Diagnostics.DebuggerNonUserCode] public StatementContext[] statement() {
-			return GetRuleContexts<StatementContext>();
-		}
-		[System.Diagnostics.DebuggerNonUserCode] public StatementContext statement(int i) {
-			return GetRuleContext<StatementContext>(i);
-		}
+                [System.Diagnostics.DebuggerNonUserCode] public BlockContext[] block() {
+                        return GetRuleContexts<BlockContext>();
+                }
+                [System.Diagnostics.DebuggerNonUserCode] public BlockContext block(int i) {
+                        return GetRuleContext<BlockContext>(i);
+                }
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ELSE() { return GetToken(AlphaParser.ELSE, 0); }
 		public IfStatementContext(StatementContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
@@ -1165,19 +1165,19 @@ public partial class AlphaParser : Parser {
 				State = 138;
 				Match(RPAREN);
 				State = 139;
-				statement();
-				State = 142;
-				ErrorHandler.Sync(this);
-				switch ( Interpreter.AdaptivePredict(TokenStream,9,Context) ) {
-				case 1:
-					{
-					State = 140;
-					Match(ELSE);
-					State = 141;
-					statement();
-					}
-					break;
-				}
+                                block();
+                                State = 142;
+                                ErrorHandler.Sync(this);
+                                switch ( Interpreter.AdaptivePredict(TokenStream,9,Context) ) {
+                                case 1:
+                                        {
+                                        State = 140;
+                                        Match(ELSE);
+                                        State = 141;
+                                        block();
+                                        }
+                                        break;
+                                }
 				}
 				break;
 			case 6:

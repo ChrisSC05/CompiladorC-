@@ -351,9 +351,9 @@ namespace AlphaCompiler.Semantics
             if (condVal is bool b)
             {
                 if (b)
-                    Visit(ctx.statement(0));
-                else if (ctx.statement().Length > 1)
-                    Visit(ctx.statement(1));
+                    Visit(ctx.block(0));
+                else if (ctx.block().Length > 1)
+                    Visit(ctx.block(1));
             }
             else
             {
