@@ -78,12 +78,12 @@ namespace AlphaCompiler.Generation
         {
             var condition = Visit(context.condition());
             Instructions.Add($"if ({condition}) {{");
-            Visit(context.statement(0));
+            Visit(context.block(0));
             Instructions.Add("}");
-            if (context.statement().Length > 1)
+            if (context.block().Length > 1)
             {
                 Instructions.Add("else {");
-                Visit(context.statement(1));
+                Visit(context.block(1));
                 Instructions.Add("}");
             }
             return null;
