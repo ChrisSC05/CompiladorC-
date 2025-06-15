@@ -348,12 +348,13 @@ namespace AlphaCompiler.Semantics
         public override object? VisitIfStatement(AlphaParser.IfStatementContext ctx)
         {
             var condVal = Visit(ctx.condition());
+            //Console.WriteLine($"condVal: {condVal} (type: {condVal?.GetType().Name ?? "null"})");
             if (condVal is bool b)
             {
                 if (b)
-                    Visit(ctx.statement(0));
-                else if (ctx.statement().Length > 1)
-                    Visit(ctx.statement(1));
+                    Visit(ctx.block(0));
+                else if (ctx.block().Length > 1)
+                    Visit(ctx.block(1));
             }
             else
             {
@@ -477,28 +478,52 @@ namespace AlphaCompiler.Semantics
             return result;
         }
 
-        public override object? VisitCondition(AlphaParser.ConditionContext ctx)
+        public override object? VisitCondFact(AlphaParser.CondFactContext context)
         {
-            bool result = ToBool(Visit(ctx.condTerm(0)));
-            for (int i = 1; i < ctx.condTerm().Length; i++)
-                result |= ToBool(Visit(ctx.condTerm(i)));
+            var left = Visit(context.expr(0));
+            var right = Visit(context.expr(1));
+            var op = context.relop().GetText();
+
+            return op switch
+            {
+                "==" => Equals(left, right),
+                "!=" => !Equals(left, right),
+                ">"  => Compare(left, right) > 0,
+                ">=" => Compare(left, right) >= 0,
+                "<"  => Compare(left, right) < 0,
+                "<=" => Compare(left, right) <= 0,
+                _ => throw new Exception($"Operador relacional desconocido: {op}")
+            };
+        }
+        
+        private int Compare(object? left, object? right)
+        {
+            if (left is int li && right is int ri) return li.CompareTo(ri);
+            if (left is double ld && right is double rd) return ld.CompareTo(rd);
+            if (left is char lc && right is char rc) return lc.CompareTo(rc);
+            if (left is string ls && right is string rs) return string.Compare(ls, rs);
+    
+            throw new Exception($"No se puede comparar {left?.GetType().Name} con {right?.GetType().Name}");
+        }
+        
+        public override object? VisitCondTerm(AlphaParser.CondTermContext context)
+        {
+            bool result = (bool)Visit(context.condFact(0))!;
+            for (int i = 1; i < context.condFact().Length; i++)
+            {
+                result = result && (bool)Visit(context.condFact(i))!;
+            }
             return result;
         }
 
-        public override object? VisitCondTerm(AlphaParser.CondTermContext ctx)
+        public override object? VisitCondition(AlphaParser.ConditionContext context)
         {
-            bool result = ToBool(Visit(ctx.condFact(0)));
-            for (int i = 1; i < ctx.condFact().Length; i++)
-                result &= ToBool(Visit(ctx.condFact(i)));
+            bool result = (bool)Visit(context.condTerm(0))!;
+            for (int i = 1; i < context.condTerm().Length; i++)
+            {
+                result = result || (bool)Visit(context.condTerm(i))!;
+            }
             return result;
-        }
-
-        public override object? VisitCondFact(AlphaParser.CondFactContext ctx)
-        {
-            var left = Visit(ctx.expr(0));
-            var right = Visit(ctx.expr(1));
-            var op = ctx.relop().GetText();
-            return EvaluateRelational(op, left, right);
         }
 
         public override object? VisitNewArrayFactor(AlphaParser.NewArrayFactorContext ctx)

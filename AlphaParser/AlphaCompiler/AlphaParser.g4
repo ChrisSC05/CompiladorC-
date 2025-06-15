@@ -49,19 +49,19 @@ type
 // 4) SENTENCIAS
 // ===================================================================
 statement
-    : designator ASSIGN expr SEMI                              #assignStatement
-    | designator LPAREN actPars? RPAREN SEMI                   #callStatement
-    | designator INC SEMI                                      #incStatement
-    | designator DEC SEMI                                      #decStatement
-    | IF LPAREN condition RPAREN statement (ELSE statement)?   #ifStatement
-    | FOR LPAREN expr? SEMI condition? SEMI expr? RPAREN statement #forStatement
-    | WHILE LPAREN condition RPAREN statement                  #whileStatement
-    | BREAK SEMI                                               #breakStatement
-    | RETURN expr? SEMI                                        #returnStatement
-    | READ LPAREN designator RPAREN SEMI                       #readStatement
-    | printStmt                                                #printStatement
-    | block                                                    #blockStatement
-    | SEMI                                                     #emptyStatement
+    : designator ASSIGN expr SEMI                                  #assignStatement
+    | designator LPAREN actPars? RPAREN SEMI                       #callStatement
+    | designator INC SEMI                                          #incStatement
+    | designator DEC SEMI                                          #decStatement
+    | IF LPAREN condition RPAREN block (ELSE block)?               #ifStatement
+    | FOR LPAREN expr? condition?  expr? RPAREN statement          #forStatement
+    | WHILE LPAREN condition RPAREN statement                      #whileStatement
+    | BREAK SEMI                                                   #breakStatement
+    | RETURN expr? SEMI                                            #returnStatement
+    | READ LPAREN designator RPAREN SEMI                           #readStatement
+    | printStmt                                                    #printStatement
+    | block                                                        #blockStatement
+    | SEMI                                                         #emptyStatement
     ;
 // ===================================================================
 // 5) BLOQUES

@@ -1,0 +1,7 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=ALPHACOMPILER_003BMAINWINDOW_002EXAML/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=CONTENT_005CIDE_005CMAINWINDOW_002EXAML/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/MappedPaths/=MAINWINDOW_002EXAML/@EntryIndexedValue"></s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=ALPHACOMPILER_003BMAINWINDOW_002EXAML/@EntryIndexedValue">AlphaCompiler;MainWindow.xaml</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=CONTENT_005CIDE_005CMAINWINDOW_002EXAML/@EntryIndexedValue">Content\IDE\MainWindow.xaml</s:String>
+	<s:String x:Key="/Default/CodeInspection/WebPathMapping/PathsInCorrectCasing/=MAINWINDOW_002EXAML/@EntryIndexedValue">MainWindow.xaml</s:String></wpf:ResourceDictionary>
