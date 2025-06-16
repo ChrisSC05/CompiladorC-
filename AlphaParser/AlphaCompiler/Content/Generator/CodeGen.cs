@@ -126,6 +126,31 @@ namespace AlphaCompiler.Generation
         }
     }
 
+    public class IRFor : IRStatement
+    {
+        public string? InitExpr { get; }
+        public string? ConditionText { get; }
+        public string? UpdateExpr { get; }
+        public List<IRStatement> BodyStatements { get; }
+
+        public IRFor(string? initExpr, string? conditionText, string? updateExpr, List<IRStatement> bodyStatements)
+        {
+            InitExpr = initExpr;
+            ConditionText = conditionText;
+            UpdateExpr = updateExpr;
+            BodyStatements = bodyStatements;
+        }
+
+        public override string Emit()
+        {
+            var init = InitExpr ?? string.Empty;
+            var cond = ConditionText ?? string.Empty;
+            var update = UpdateExpr ?? string.Empty;
+            var bodyCode = string.Join("\n", BodyStatements.Select(s => s.Emit()));
+            return $"for ({init}; {cond}; {update}) {{\n{bodyCode}\n}}";
+        }
+    }
+
     
     public class IRAssignment : IRStatement
     {
@@ -325,6 +350,27 @@ namespace AlphaCompiler.Generation
 
             // Agregamos el IRWhile con condición en texto y cuerpo
             Program.Statements.Add(new IRWhile(conditionText, bodyStatements));
+
+            return null;
+        }
+
+        public override object? VisitForStatement(AlphaParser.ForStatementContext context)
+        {
+            Console.WriteLine("⚙️ Visitando FOR");
+
+            var initExpr = context.expr().Length > 0 ? Visit(context.expr(0))?.ToString() : null;
+            var conditionText = context.condition() != null ? Visit(context.condition())?.ToString() : null;
+            var updateExpr = context.expr().Length > 1 ? Visit(context.expr(1))?.ToString() : null;
+
+            var bodyStatements = new List<IRStatement>();
+            var oldStatements = Program.Statements;
+            Program.Statements = bodyStatements;
+
+            Visit(context.statement());
+
+            Program.Statements = oldStatements;
+
+            Program.Statements.Add(new IRFor(initExpr, conditionText, updateExpr, bodyStatements));
 
             return null;
         }
