@@ -81,6 +81,10 @@ class Main {
                     i = i - 1;         // ciclo descendente
                     print(i);           // imprime 2,1,0
                 }
+
+                for(i = 0; i < 3; i = i + 1) {
+                    print(i);           // imprime 0,1,2
+                }
         
                 
     }

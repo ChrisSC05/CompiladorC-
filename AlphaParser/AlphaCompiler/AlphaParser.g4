@@ -54,7 +54,7 @@ statement
     | designator INC SEMI                                          #incStatement
     | designator DEC SEMI                                          #decStatement
     | IF LPAREN condition RPAREN block (ELSE block)?               #ifStatement
-    | FOR LPAREN expr? condition?  expr? RPAREN statement          #forStatement
+    | FOR LPAREN expr? SEMI condition? SEMI expr? RPAREN statement          #forStatement
     | WHILE LPAREN condition RPAREN statement                      #whileStatement
     | BREAK SEMI                                                   #breakStatement
     | RETURN expr? SEMI                                            #returnStatement
@@ -96,8 +96,9 @@ condFact
 // 8) EXPRESIONES
 // ===================================================================
 expr
-    : MINUS cast? term                     #unaryExpr
-    | term (addop term)*                   #binaryExpr
+    : designator ASSIGN expr              #assignExpr
+    | MINUS cast? term                    #unaryExpr
+    | term (addop term)*                  #binaryExpr
     ;
 
 term
